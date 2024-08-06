@@ -17,12 +17,10 @@ Y_train = data_train[0]
 X_train = data_train[1:n]
 
 def init_params():
-
     W1 = np.random.rand(10, 784)
     b1 = np.random.rand(10, 1)
     W2 = np.random.rand(10, 10)
     b2 = np.random.rand(10, 1)
-
     return W1, b1, W2, b2
 
 def ReLU(Z):
@@ -78,12 +76,10 @@ def gradient_descent(X, Y, LR, iterations):
         Z1, A1, Z2, A2 = forward_propagation(W1, b1, W2, b2, X)
         dW1, db1, dW2, db2 = backpropagation(Z1, A1, Z2, A2, W1, W2, X, Y)
         W1, b1, W2, b2 = update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, LR)
-
         if i % 10 == 0:
             print("Iter:", i)
             preds = predictions(A2)
             print("Accuracy:", accuracy(preds, Y))
-
     return W1, b1, W2, b2
 
 W1, b1, W2, b2 = gradient_descent(X_train, Y_train, 0.001, 300)
